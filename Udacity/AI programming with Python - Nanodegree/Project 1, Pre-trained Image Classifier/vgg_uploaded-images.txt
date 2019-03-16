@@ -1,0 +1,91 @@
+Command Line Arguments:
+     dir = uploaded_images/ 
+    arch = vgg 
+ dogfile = dognames.txt
+
+Pet Image Label Dictionary has 4 key-value pairs.
+Below are 4 of them:
+ 1 key:                     Fan_01.jpg  label:                        fan
+ 2 key:                  Beagle_01.jpg  label:                     beagle
+ 3 key:                  Beagle_02.jpg  label:                     beagle
+ 4 key:                     Cat_01.jpg  label:                        cat
+
+     MATCH:
+
+                    Fan_01.jpg: 
+Real:                        fan   Classifier:           electric fan, blower
+
+                    Cat_01.jpg: 
+Real:                        cat   Classifier:              egyptian cat, cat
+
+ NOT A MATCH:
+
+                 Beagle_01.jpg: 
+Real:                     beagle   Classifier:               english foxhound
+
+                 Beagle_02.jpg: 
+Real:                     beagle   Classifier:               english foxhound
+
+# Total Images 4 # Matches: 2 # NOT Matches: 2
+
+     MATCH:
+
+                    Fan_01.jpg: 
+Real:                        fan   Classifier:           electric fan, blower  
+PetLabelDog: 0  ClassLabelDog: 0
+
+                    Cat_01.jpg: 
+Real:                        cat   Classifier:              egyptian cat, cat  
+PetLabelDog: 0  ClassLabelDog: 0
+
+ NOT A MATCH:
+
+                 Beagle_01.jpg: 
+Real:                     beagle   Classifier:               english foxhound  
+PetLabelDog: 1  ClassLabelDog: 1
+
+                 Beagle_02.jpg: 
+Real:                     beagle   Classifier:               english foxhound  
+PetLabelDog: 1  ClassLabelDog: 1
+
+# Total Images 4 # Matches: 2 # NOT Matches: 2
+
+ ** Statistics from calculates_results_stats() function:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+
+ ** Check Statistics - calculated from this function as a check:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+vgg
+4 
+ 2 
+ 2
+pct_macth:50.0
+pct_correct_dogs:100.0
+pct_correct_breed:0.0
+pct_correct_notdogs:100.0
+pct_correct_label_match:50.0
+
+
+
+------------------------------------------------------
+Pet image and classifier labels for misclassified dogs:
+------------------------------------------------------
+None!
+
+
+
+------------------------------------------------------
+Pet image and classifier labels for misclassified breed:
+------------------------------------------------------
+
+ Pet image label: beagle 
+ Classifier label: english foxhound 
+
+
+ Pet image label: beagle 
+ Classifier label: english foxhound 
+
+
+** Total Elapsed Runtime: 0:0:3
