@@ -42,18 +42,27 @@ def get_pet_labels(image_dir):
     """
     # Replace None with the results_dic dictionary that you created with this
     # function
-    
+                                                                                  
     filename_list = listdir(image_dir)
+    bad_name_chars = ['#','$','.','!','&','*','(',')','[',']','{','}','%',';',':','?',
+                      '0','1','2','3','4','5','6','7','8','9']
+    for filename in filename_list:     
+        if filename[0].lower() in bad_name_chars:
+            filename_list.remove(filename)
+    
     pet_labels = list()
     results_dic = dict()
         
-    for filename in filename_list:
-        low_pet_image = filename.lower()
-        word_list_pet_image = low_pet_image.split("_")     
+    for filename in filename_list:       
+        low_pet_image = filename.lower()   
         pet_name = ""
-        for word in word_list_pet_image:         
-            if word.isalpha():
-                pet_name += word + " "
+        if not "_" in low_pet_image:
+            pet_name = low_pet_image.replace(".jpg", "")
+        else:    
+            word_list_pet_image = low_pet_image.split("_")         
+            for word in word_list_pet_image:         
+                if word.isalpha():
+                    pet_name += word + " "
         pet_labels.append(pet_name.strip())        
         
         
@@ -65,3 +74,5 @@ def get_pet_labels(image_dir):
                  results_dic[filename_list[idx]])           
     
     return results_dic
+    
+  
