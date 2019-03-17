@@ -57,7 +57,8 @@ def get_pet_labels(image_dir):
         low_pet_image = filename.lower()   
         pet_name = ""
         if not "_" in low_pet_image:
-            pet_name = low_pet_image.replace(".jpg", "")
+            extension = "." + low_pet_image.split('.')[-1]
+            pet_name = low_pet_image.replace(extension, "")
         else:    
             word_list_pet_image = low_pet_image.split("_")         
             for word in word_list_pet_image:         
