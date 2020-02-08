@@ -1,0 +1,18 @@
+[
+    {
+        "audi_a4_sedan": {
+            "area_frontal_m2": 2.24,
+            "aro_roda_inch": 17,
+            "peso_kg": 1405,
+            "relacao_transmissao": 1.4,
+            "torque_motor_nm": 320,
+            "velocidade_maxima": 240,
+            "condicao": {
+                "velocidade_final": 0,
+                "velocidade_inicial": 0,
+                "velocidade_desejada": 180,
+                "angulo_inclinacao_graus": 20
+            }
+        }
+    }
+]

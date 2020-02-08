@@ -1,0 +1,102 @@
+Controle Fuzzy que modela o aceleramento de um carro.
+
+Controle automatico de um carro, considerando:
+    Resistencia ao rolamento dos pneus.
+    Arrasto do ar na carroceria.
+    Declive de pista.
+
+--------------------------> SISTEMA CARRO <-------------------------
+
+Inputs (Sistema carro):
+    Posicao do acelerador:
+        Universe (crisp value range):
+            P(t) 0% a 100%
+
+        Fuzzy set:
+            lowest
+            lower
+            low
+            average
+            high
+            higher
+            highest
+
+Params:
+    P  = Peso ?!
+    M  = Massa do carro Kg.
+    T  = Torque do motor (metro por quilograma-força, kgf.m)
+    X  = Relação de transmissão (0.5 a 2.0)
+    R  = Raio da roda (0.35m para aro 14")
+    Ca = Constante de Resistencia ao arrasto (1.2kg/m³ x 0.33 x area frontal do carro, e.x 2m²)
+    Cr = Constante de atrito por rolamento (sugestão 0.01, experimente outros valores)
+    g  = Gravidade (9.8m/s²)
+    Vd = Velocidade desejada (km/h)
+
+Outputs (Sistema carro):
+    Velocidade(m/s):
+        V(t) = V(t-1) + a(t-1).Δt
+        Δt = intervalo de tempo da simulação (sugestão 0.1s)
+
+    Força de tração do motor:
+        Ft(t) = P.T.( X / R )
+
+    Força de Resistencia do arrasto:
+        Fa(t) = - Ca.V(t)²
+            Se em alta velocidade:
+            Unknown for now...
+
+    Força de atrito por rolamento:
+        Se [ V(t) != 0 ] ou [ V(t) == 0 e Fr(t) < ( Ft(t) + Fg(t) )  ] :
+            Fr(t) = - Cr.M.g
+        Senão:
+            Fr(t) = Ft(t) + Fg(t)
+
+    Força da gravidade:
+        Aclive e declives:
+            Fg(t) = -g.M.sen(θ)
+                θ = 0 → Plano
+                θ > 0 → Subida
+                θ < 0 → Descida
+
+    Força total do carro:
+        F(t) = Ft(t) + Fa(t) + Fr(t) + Fg(t)
+
+    Aceleração(m/s²):
+        a(t) = F(t)/M
+
+--------------------------> FUZZY LOGIC <-------------------------
+
+Antecednets (Inputs):
+    Diferença entre a velocidade V(t) e a velocidade desejada Vd
+        Universe (crisp value range):
+            V(t) 0% a 100%
+
+        Fuzzy set:
+            lowest
+            lower
+            low
+            average
+            high
+            higher
+            highest
+
+Consequents (Outputs):
+    Posicao do acelerador
+        Universe (crisp value range):
+            P(t) 0% a 100%
+
+        Fuzzy set:
+            low
+            medium
+            high
+
+Rules:
+
+
+Usage:
+    If I tell this controller that ....:
+        the ... as ..., and
+        the ... as ...,
+
+    it would recommend I leave:
+        .....
